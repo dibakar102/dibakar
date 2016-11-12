@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+  		<title>Lab 5</title>
+  		<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  		<script> 			
+			var i = function(id){
+				return document.getElementById(id);
+			}
+			var joinList = function(){
+				var firstName = i("first_name").value;
+				var lastName = i("last_name").value;
+				var email = i("email_address").value;
+				var isValid = true;
+				if(firstName == ""){
+					i("first_name_error").firstChild.nodeValue = "This field can not be empty.";
+					i("first_name_error").style.color = "red";
+					isValid = false;
+				}else{
+					i("first_name_error").firstChild.nodeValue = "";
+				}
+				if(lastName == ""){
+					i("last_name_error").firstChild.nodeValue = "This field can not be empty.";
+					document.getElementById("last_name_error").style.color = "red";
+					isValid = false;
+				}else{
+					i("last_name_error").firstChild.nodeValue = "";
+				}
+				if(email == ""){
+					i("email_address_error").firstChild.nodeValue = "This field can not be empty.";
+					document.getElementById("email_address_error").style.color = "red";
+					isValid = false;
+			}else{
+					i("email_address_error").firstChild.nodeValue = "";
+			}
+			if(isValid){
+					document.getElementById("table").innerHTML = "<tr><td>First Name: </td><td>" + firstName+" </td></tr>"
+					+ "<tr><td>Last Name: </td><td>"+ lastName +"</td></tr>" + "<tr><td>Email: </td><td>" + email+"</td></tr>";	
+			}
+		}
+		window.onload = function(){
+		i("submit").onclick = joinList;
+	}
+		$(document).ready(function(){
+ 		 	$("#first_name").css({"background-color":"#FFFF99"});
+  			$("#last_name").css({"background-color":"#FFFF99"});
+  			$("#email_address").css({"background-color":"#FFFF99"});
+ 	 });
+
+  	</script>	
+  	<style type="text/css">
+  		label{
+  			float: left;
+  				width: 5em;
+  				text-align: right;
+  			}
+  			input{
+  				margin-left: 1em;
+  			}
+  	</style>
+	</head>
+	<body>
+		<main>
+			<form id="name_form" name="name_form" action="index.html" method="get">
+				<label for="first_name">First Name: </label>
+				<input type="text" id="first_name" name="first_name">
+				<span id="first_name_error">*</span><br>
+
+				<label for="last_name">Last Name: </label>
+				<input type="text" id="last_name" name="last_name">
+				<span id="last_name_error">*</span><br>
+
+				<label for="email_address">Email : </label>
+				<input type="text" id="email_address" name="email_address">
+				<span id="email_address_error">*</span><br><br>
+
+				<label> &nbsp; </label>
+				<input type="button" id="submit" value="Submit ">		
+			</form>
+			<br>
+		</main>
+
+		<table id="table" border="1" style="border-collapse: collapse;">
+		</table>
+	</body>
+</html>
